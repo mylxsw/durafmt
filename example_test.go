@@ -3,6 +3,7 @@ package durafmt
 import (
 	"fmt"
 	"math"
+	"testing"
 	"time"
 )
 
@@ -58,7 +59,7 @@ func ExampleParseStringShort() {
 
 func ExampleParse() {
 	timeduration := (354 * time.Hour) + (22 * time.Minute) + (3 * time.Second)
-	duration := Parse(timeduration).String()
+	duration := Parse(timeduration).String("年", "周", "天", "小时", "分钟", "秒", "毫秒", "微秒")
 	fmt.Println(duration) // 2 weeks 18 hours 22 minutes 3 seconds
 }
 
@@ -67,4 +68,12 @@ func ExampleParseShort() {
 	timeduration := (354 * time.Hour) + (22 * time.Minute) + (3 * time.Second)
 	duration := ParseShort(timeduration).String()
 	fmt.Println(duration) // 2 weeks
+}
+
+func TestParse2(t *testing.T) {
+	ExampleDurafmt_LimitFirstN()
+	ExampleDurafmt_LimitToUnit()
+	ExampleParse()
+	ExampleParseShort()
+	ExampleParseString()
 }

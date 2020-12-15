@@ -8,7 +8,7 @@
 durafmt is a tiny Go library that formats `time.Duration` strings (and types) into a human readable format.
 
 ```
-go get github.com/hako/durafmt
+go get github.com/mylxsw/durafmt
 ```
 
 # Why
@@ -35,7 +35,7 @@ package main
 import (
 	"fmt"
 	
-	"github.com/hako/durafmt"
+	"github.com/mylxsw/durafmt"
 )
 
 func main() {
@@ -58,7 +58,7 @@ package main
 import (
 	"fmt"
 	
-	"github.com/hako/durafmt"
+	"github.com/mylxsw/durafmt"
 )
 
 func main() {
@@ -80,7 +80,7 @@ import (
 	"fmt"
 	"time"
 	
-	"github.com/hako/durafmt"
+	"github.com/mylxsw/durafmt"
 )
 
 func main() {
@@ -101,7 +101,7 @@ import (
 	"fmt"
 	"time"
 	
-	"github.com/hako/durafmt"
+	"github.com/mylxsw/durafmt"
 )
 
 func main() {

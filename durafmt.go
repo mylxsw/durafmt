@@ -80,7 +80,7 @@ func ParseStringShort(input string) (*Durafmt, error) {
 }
 
 // String parses d *Durafmt into a human readable duration.
-func (d *Durafmt) String() string {
+func (d *Durafmt) String(translates ...string) string {
 	var duration string
 
 	// Check for minus durations.
@@ -169,10 +169,10 @@ func (d *Durafmt) String() string {
 		switch {
 		// add to the duration string if v > 1.
 		case v > 1:
-			duration += strval + " " + u + " "
+			duration += strval + " " + getTranslate(translates, i, u) + " "
 		// remove the plural 's', if v is 1.
 		case v == 1:
-			duration += strval + " " + strings.TrimRight(u, "s") + " "
+			duration += strval + " " + strings.TrimRight(getTranslate(translates, i, u), "s") + " "
 		// omit any value with 0s or 0.
 		case d.duration.String() == "0" || d.duration.String() == "0s":
 			pattern := fmt.Sprintf("^-?0%s$", unitsShort[i])
@@ -181,7 +181,7 @@ func (d *Durafmt) String() string {
 				return ""
 			}
 			if isMatch {
-				duration += strval + " " + u
+				duration += strval + " " + getTranslate(translates, i, u)
 			}
 
 		// omit any value with 0.
@@ -202,4 +202,12 @@ func (d *Durafmt) String() string {
 	}
 
 	return duration
+}
+
+func getTranslate(translates []string, i int, defaultVal string) string {
+	if len(translates) > i {
+		return translates[i]
+	}
+
+	return defaultVal
 }
